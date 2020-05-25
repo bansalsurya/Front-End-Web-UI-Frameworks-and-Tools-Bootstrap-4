@@ -30,7 +30,8 @@
                         <li class="nav-item"><a class="nav-link" href="./contactus.html"><span class="fa fa-address-card fa-lg"></span> Contact</a></li>
                 </ul>
                 <span class="navbar-text">
-                    <a data-toggle="modal" data-target="#loginModal">
+                    <!--<a data-toggle="modal" data-target="#loginModal">-->
+                    <a id="modalOne" href="#" >
                         <span class="fa fa-sign-in"></span>Login
                     </a>
                 </span>
@@ -40,11 +41,10 @@
 
     <div id="loginModal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg" role="content">
-            
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Login </h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" id="dismissModal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <form>
@@ -80,7 +80,7 @@
                     <div class="modal-content">
                         <div class="modal-header" >
                             <h3 class="modal-title"> Reserve a Table </h3>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <button type="button" class="close" id="dismissModal">&times;</button>
                         </div>
                         <div class="modal-body">
                             <form>
@@ -138,13 +138,13 @@
                                             <input type="text" class="form-control" placeholder="Time">
                                         </div>
                                 </div>
-                                <div class="row form-group offset-2 ">
-                                        <div class="col-12 ">
+                                <div class="row form-group ">
+                                        <div class="col col-sm-12 offset-2">
                                                 <button class="btn btn-secondary"> Cancel </button>
                                                 <button class="btn btn-primary"> Reserve </button>
                                         </div>
                                 </div>
-                                </div>
+                            </div>
                             </form>
                         </div>   
                     </div>
@@ -163,7 +163,7 @@
                 </div>
                 <div class="col-12 col-sm align-self-center" >
                     <!--<a role="button" href="#reserve" class="btn btn-warning btn-block nav-link" data-toggle="tooltip" data-html="true" title="Or Call us at <br><strong>+91 8876432057</strong>" data-placement="bottom">Reserve Table</a>-->
-                    <a role="button" data-target="#reserveModal" data-toggle="modal" class="btn btn-warning btn-block nav-link">Reserve Table</a>
+                    <a role="button" id="modalTwo" class="btn btn-warning btn-block nav-link">Reserve Table</a>
                 </div>
             </div>
         </div>
@@ -318,6 +318,24 @@
     </script>-->
     <script>
         $(document).ready(function() {
+
+            $('#modalOne').on('click',function() {
+                $('#loginModal').modal({
+                    toggle: true
+                    })
+            });
+            $('#modalTwo').on('click',function() {
+                $('#reserveModal').modal({
+                    toggle: true
+                    })
+            });
+
+            $('.close').on('click',function() {
+                var idModal = $(this).parent().parent().parent().parent().attr('id');
+                $('#' + idModal).modal('hide');
+
+            });
+
             $('#mycarousel').carousel({interval:2000});
             $('#carouselButton').click(function() {
                 if($('#carouselButton').children('span').hasClass('fa-pause')) {
@@ -335,6 +353,7 @@
 
     });
     </script>
+ 
 
 </body>
 
